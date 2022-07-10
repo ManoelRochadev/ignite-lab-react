@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../components/Logo";
 import { useCreateSubscriberMutation } from "../graphql/generated";
+import imageCode from "/src/assets/code-mockup.png"
 
 export function Subscribe() {
   const navigate = useNavigate();
@@ -19,13 +20,13 @@ export function Subscribe() {
   }
 
   return (
-    <div className="min-h-screen bg-blur bg-cover bg-no-repeat flex flex-col items-center">
+    <div className={`min-h-screen bg=[url(/assets/blur-bg.png)] bg-cover bg-no-repeat flex flex-col items-center`}>
       <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto">
         <div className="max-w-[640px]">
           <Logo />
 
           <h1 className="mt-8  text-[2.5rem] leading-tight">
-            Construa uma <strong className="text-blue-500">aplicação completa</strong> , do zero, com <strong className="text-blue-500">React</strong>
+            Construa uma <strong className="text-blue-500">aplicação completa</strong>, do zero, com <strong className="text-blue-500">React</strong>
           </h1>
 
           <p className="mt-4 text-gray-200 leading-relaxed">
@@ -61,7 +62,7 @@ export function Subscribe() {
         </div>
       </div>
 
-      <img src="/src/assets/code-mockup.png" alt="" className="mt-10" />
+      <img src={imageCode} alt="" className="mt-10" />
     </div>
   )
 }
