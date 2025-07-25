@@ -2,7 +2,11 @@ import { useGetLessonsQuery } from "../graphql/generated";
 import { Lesson } from "./Lesson";
 
 export function Sidebar() {
-  const { data } = useGetLessonsQuery()
+  const { data, networkStatus, error } = useGetLessonsQuery()
+
+  console.log("Dados das aulas:", data)
+  console.log("Status da rede:", networkStatus)
+  console.error("Erro GraphQL:", error)
 
   return (
     <aside className="w-[348px] bg-gray-700 p-6 border-l border-gray-600">
@@ -16,10 +20,10 @@ export function Sidebar() {
             return (
               <Lesson
                 key={lesson.id}
-                title={lesson.title}
-                slug={lesson.slug}
+                title={lesson.title!}
+                slug={lesson.slug!}
                 availableAt={new Date(lesson.availableAt)}
-                type={lesson.lessonType}
+                type={lesson.lessonType!}
               />
             )
           })

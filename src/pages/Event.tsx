@@ -5,7 +5,6 @@ import { Video } from "../components/Video";
 
 export function Event() {
   const { slug } = useParams<{ slug: string }>()
-
   const navigate = useNavigate()
 
     return (

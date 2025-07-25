@@ -6,7 +6,7 @@ query GetLessonBySlug ($slug: String) {
     teacher {
       bio
       name
-      avatarURL
+      avatarUrl
     }
   }
 }

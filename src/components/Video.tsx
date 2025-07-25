@@ -8,11 +8,19 @@ interface VideoProps {
 }
 
 export function Video({ lessonSlug }: VideoProps) {
-  const { data } = useGetLessonBySlugQuery({
+  const { data, error  } = useGetLessonBySlugQuery({
     variables: {
       slug: lessonSlug
-    }
+    },
+    skip: !lessonSlug,
   })
+  
+
+  console.log("Dados da aula:", data)
+
+  if (error) {
+    console.error("Erro GraphQL:", error)
+  }
 
   if (!data || !data.lesson) {
     return (
@@ -25,7 +33,7 @@ export function Video({ lessonSlug }: VideoProps) {
   return (
     <div className="flex-1">
       <div className="bg-black flex justify-center">
-        <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
+        <div className="h-full w-full max-w-[980px] max-h-[60vh] aspect-video">
           <Player>
             <Youtube videoId={data.lesson.videoId} />
             <DefaultUi />
@@ -47,7 +55,7 @@ export function Video({ lessonSlug }: VideoProps) {
               <div className="flex items-center gap-4 mt-6">
               <img
                 className="h-16 w-16 rounded-full border-2 border-blue-500"
-                src={data.lesson.teacher.avatarURL}
+                src={data.lesson.teacher.avatarUrl}
                 alt="Imagem professor"
               />
 
